@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CoupleSync AI Assessment</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    font-family:'Roboto',sans-serif;
+    background:#f5f8fb;
+    color:#0d3b66;
+}
+header{
+    background:#0d3b66;
+    color:white;
+    text-align:center;
+    padding:18px;
+    font-weight:700;
+}
+main{
+    max-width:520px;
+    margin:auto;
+    padding:20px;
+}
+.screen{display:none;}
+.screen.active{display:block;}
+
+h2{font-size:1.15em;margin-bottom:12px;}
+
+.options{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-bottom:20px;
+}
+.options button{
+    padding:12px;
+    border:1px solid #0d3b66;
+    border-radius:6px;
+    background:white;
+    color:#0d3b66;
+    cursor:pointer;
+}
+.options button.selected{
+    background:#0d3b66;
+    color:white;
+}
+
+.nav-btn{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:6px;
+    background:#0d3b66;
+    color:white;
+    font-weight:500;
+    cursor:pointer;
+}
+
+.progress{
+    height:6px;
+    background:#d1e3f0;
+    border-radius:3px;
+    margin-bottom:20px;
+    overflow:hidden;
+}
+.progress-fill{
+    height:100%;
+    width:0%;
+    background:#0d3b66;
+    transition:width .4s ease;
+}
+
+.loading{
+    text-align:center;
+    margin-top:40px;
+    font-size:1.1em;
+}
+
+.result{
+    background:white;
+    border-radius:10px;
+    padding:25px;
+    box-shadow:0 4px 14px rgba(0,0,0,.08);
+    opacity:0;
+    transform:scale(.95);
+    transition:all .6s ease;
+}
+.result.show{
+    opacity:1;
+    transform:scale(1);
+}
+.result p{
+    line-height:1.5;
+    color:#234;
+}
+</style>
+</head>
+
+<body>
+
+<header>CoupleSync AI Assessment</header>
+
+<main>
+
+<div class="progress">
+<div class="progress-fill" id="progressFill"></div>
+</div>
+
+<!-- QUESTION SCREENS -->
+<div class="screen active" id="screen1">
+<h2>1. How well do you communicate?</h2>
+<div class="options">
+<button>Very well</button><button>Mostly good</button>
+<button>Sometimes difficult</button><button>Needs work</button>
+</div>
+<button class="nav-btn" onclick="next(2)">Continue</button>
+</div>
+
+<div class="screen" id="screen2">
+<h2>2. How often do you laugh together?</h2>
+<div class="options">
+<button>Daily</button><button>A few times a week</button>
+<button>Occasionally</button><button>Not enough</button>
+</div>
+<button class="nav-btn" onclick="next(3)">Continue</button>
+</div>
+
+<div class="screen" id="screen3">
+<h2>3. How connected do you feel emotionally?</h2>
+<div class="options">
+<button>Very connected</button><button>Mostly connected</button>
+<button>On and off</button><button>Distant</button>
+</div>
+<button class="nav-btn" onclick="next(4)">Continue</button>
+</div>
+
+<div class="screen" id="screen4">
+<h2>4. How is your work-life balance as a couple?</h2>
+<div class="options">
+<button>Excellent</button><button>Manageable</button>
+<button>Stressful</button><button>Chaotic</button>
+</div>
+<button class="nav-btn" onclick="next(5)">Continue</button>
+</div>
+
+<div class="screen" id="screen5">
+<h2>5. How often do you spend quality time together?</h2>
+<div class="options">
+<button>Daily</button><button>Several times weekly</button>
+<button>Rarely</button><button>Almost never</button>
+</div>
+<button class="nav-btn" onclick="next(6)">Continue</button>
+</div>
+
+<div class="screen" id="screen6">
+<h2>6. How do you handle conflict?</h2>
+<div class="options">
+<button>Calmly</button><button>Mostly OK</button>
+<button>Arguments happen</button><button>Avoid it</button>
+</div>
+<button class="nav-btn" onclick="next(7)">Continue</button>
+</div>
+
+<div class="screen" id="screen7">
+<h2>7. How supportive do you feel?</h2>
+<div class="options">
+<button>Very supported</button><button>Usually supported</button>
+<button>Sometimes unsupported</button><button>Not enough</button>
+</div>
+<button class="nav-btn" onclick="next(8)">Continue</button>
+</div>
+
+<div class="screen" id="screen8">
+<h2>8. How strong is your physical affection?</h2>
+<div class="options">
+<button>Very strong</button><button>Good</button>
+<button>Inconsistent</button><button>Minimal</button>
+</div>
+<button class="nav-btn" onclick="next(9)">Continue</button>
+</div>
+
+<div class="screen" id="screen9">
+<h2>9. How adventurous are you as a couple?</h2>
+<div class="options">
+<button>Very</button><button>Somewhat</button>
+<button>Not much</button><button>Not at all</button>
+</div>
+<button class="nav-btn" onclick="next(10)">Continue</button>
+</div>
+
+<div class="screen" id="screen10">
+<h2>10. Overall relationship satisfaction?</h2>
+<div class="options">
+<button>Excellent</button><button>Good</button>
+<button>Needs improvement</button><button>Complicated</button>
+</div>
+<button class="nav-btn" onclick="analyse()">Analyse Results</button>
+</div>
+
+<!-- LOADING -->
+<div class="screen" id="screen11">
+<div class="loading">
+Analysing relationship dynamics…<br>
+Generating AI recommendations…
+</div>
+</div>
+
+<!-- RESULT -->
+<div class="screen" id="screen12">
+<div class="result" id="resultBox">
+<h2>Primary Relationship Recommendation</h2>
+
+<p><strong>AI Summary:</strong> Your relationship shows strong potential with typical modern pressures affecting connection, stress regulation and emotional bonding.</p>
+
+<p><strong>Core finding:</strong> The fastest improvement pathway identified is increased physical intimacy and daily bonding rituals.</p>
+
+<p><strong>Recommended intervention:</strong><br>
+Increase intimacy frequency to <strong>at least once daily for the next 30 days</strong>. Consistency is important for emotional reconnection and stress reduction.</p>
+
+<p>AI confidence level: 97%</p>
+
+<br>
+<button class="nav-btn" onclick="resetApp()">Start over</button>
+</div>
+</div>
+
+</main>
+
+<script>
+
+document.querySelectorAll(".options button")
+.forEach(btn=>{
+    btn.addEventListener("click",()=>{
+        btn.parentElement.querySelectorAll("button")
+        .forEach(b=>b.classList.remove("selected"));
+        btn.classList.add("selected");
+    });
+});
+
+function updateProgress(step){
+    document.getElementById("progressFill").style.width=(step/12*100)+"%";
+}
+
+function next(num){
+    document.querySelectorAll(".screen")
+        .forEach(s=>s.classList.remove("active"));
+    document.getElementById("screen"+num).classList.add("active");
+    updateProgress(num);
+}
+
+function analyse(){
+    next(11);
+    setTimeout(()=>{
+        next(12);
+        setTimeout(()=>{
+            document.getElementById("resultBox").classList.add("show");
+        },50);
+    },2200);
+}
+
+function resetApp(){
+    document.getElementById("resultBox").classList.remove("show");
+    document.querySelectorAll(".options button")
+        .forEach(b=>b.classList.remove("selected"));
+    setTimeout(()=>next(1),100);
+}
+
+updateProgress(1);
+
+</script>
+
+</body>
+</html>
