@@ -26,8 +26,8 @@ header h1{
 }
 header p{
     margin:4px 0 0;
-    opacity:.7;
     font-size:.95em;
+    opacity:.7;
 }
 
 main{
@@ -41,6 +41,21 @@ main{
     border-radius:20px;
     padding:22px;
     box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.hero{
+    background:#fff7fc;
+    border:1px solid #f0dbea;
+    border-radius:16px;
+    padding:16px;
+    margin-bottom:18px;
+}
+.hero small{
+    opacity:.6;
+}
+.hero strong{
+    display:block;
+    margin:6px 0;
 }
 
 .screen{display:none;}
@@ -62,7 +77,12 @@ main{
 
 h2{
     font-size:1.2em;
-    margin:0 0 15px 0;
+    margin:0 0 5px;
+}
+.subtitle{
+    font-size:.9em;
+    opacity:.65;
+    margin-bottom:15px;
 }
 
 .options{
@@ -102,8 +122,8 @@ h2{
 
 .loading{
     text-align:center;
-    font-size:1.1em;
     padding:35px 10px;
+    font-size:1.1em;
 }
 
 .result{
@@ -115,10 +135,7 @@ h2{
     opacity:1;
     transform:translateY(0);
 }
-
-.result p{
-    line-height:1.55;
-}
+.result p{line-height:1.55;}
 </style>
 </head>
 
@@ -132,61 +149,122 @@ h2{
 <main>
 <div class="card">
 
+<div class="hero">
+<small>Today’s Connection Check-In</small>
+<strong>Small reflections strengthen relationships</strong>
+<div style="font-size:.9em;opacity:.75;">
+Take your time. There are no right or wrong answers.
+</div>
+</div>
+
 <div class="progress"><div class="progress-fill" id="fill"></div></div>
 
-<!-- 10 QUESTION SCREENS -->
+<!-- QUESTIONS -->
 <div class="screen active" id="screen1">
 <h2>How connected do you feel lately?</h2>
+<div class="subtitle">Reflect together</div>
 <div class="options">
-<button>Very connected</button>
-<button>Mostly connected</button>
-<button>Sometimes disconnected</button>
-<button>We could be closer</button>
+<button>Very connected</button><button>Mostly connected</button>
+<button>Sometimes disconnected</button><button>We could be closer</button>
 </div>
 <button class="nav-btn" onclick="next(2)">Continue</button>
 </div>
 
-<div class="screen" id="screen2"><h2>How often do you laugh together?</h2>
-<div class="options"><button>Daily</button><button>Often</button><button>Sometimes</button><button>Rarely</button></div>
-<button class="nav-btn" onclick="next(3)">Continue</button></div>
+<div class="screen" id="screen2">
+<h2>How often do you laugh together?</h2>
+<div class="subtitle">Reflect together</div>
+<div class="options">
+<button>Daily</button><button>Often</button>
+<button>Sometimes</button><button>Rarely</button>
+</div>
+<button class="nav-btn" onclick="next(3)">Continue</button>
+</div>
 
-<div class="screen" id="screen3"><h2>How supported do you feel?</h2>
-<div class="options"><button>Very supported</button><button>Mostly</button><button>Somewhat</button><button>Not enough</button></div>
-<button class="nav-btn" onclick="next(4)">Continue</button></div>
+<div class="screen" id="screen3">
+<h2>How supported do you feel?</h2>
+<div class="subtitle">Reflect together</div>
+<div class="options">
+<button>Very supported</button><button>Mostly</button>
+<button>Somewhat</button><button>Not enough</button>
+</div>
+<button class="nav-btn" onclick="next(4)">Continue</button>
+</div>
 
-<div class="screen" id="screen4"><h2>How is communication?</h2>
-<div class="options"><button>Open and easy</button><button>Generally good</button><button>Sometimes tense</button><button>Difficult</button></div>
-<button class="nav-btn" onclick="next(5)">Continue</button></div>
+<div class="screen" id="screen4">
+<h2>How is communication lately?</h2>
+<div class="subtitle">Reflect together</div>
+<div class="options">
+<button>Open and easy</button><button>Generally good</button>
+<button>Sometimes tense</button><button>Difficult</button>
+</div>
+<button class="nav-btn" onclick="next(5)">Continue</button>
+</div>
 
-<div class="screen" id="screen5"><h2>Quality time together?</h2>
-<div class="options"><button>Daily</button><button>Several times weekly</button><button>Occasionally</button><button>Rarely</button></div>
-<button class="nav-btn" onclick="next(6)">Continue</button></div>
+<div class="screen" id="screen5">
+<h2>Quality time together?</h2>
+<div class="subtitle">Reflect together</div>
+<div class="options">
+<button>Daily</button><button>Several times weekly</button>
+<button>Occasionally</button><button>Rarely</button>
+</div>
+<button class="nav-btn" onclick="next(6)">Continue</button>
+</div>
 
-<div class="screen" id="screen6"><h2>How affectionate are you?</h2>
-<div class="options"><button>Very affectionate</button><button>Quite affectionate</button><button>Inconsistent</button><button>Minimal</button></div>
-<button class="nav-btn" onclick="next(7)">Continue</button></div>
+<div class="screen" id="screen6">
+<h2>How affectionate are you?</h2>
+<div class="subtitle">Reflect together</div>
+<div class="options">
+<button>Very affectionate</button><button>Quite affectionate</button>
+<button>Inconsistent</button><button>Minimal</button>
+</div>
+<button class="nav-btn" onclick="next(7)">Continue</button>
+</div>
 
-<div class="screen" id="screen7"><h2>Stress levels as a couple?</h2>
-<div class="options"><button>Low</button><button>Manageable</button><button>High sometimes</button><button>Very high</button></div>
-<button class="nav-btn" onclick="next(8)">Continue</button></div>
+<div class="screen" id="screen7">
+<h2>How stressful has life been lately?</h2>
+<div class="subtitle">Reflect together</div>
+<div class="options">
+<button>Low stress</button><button>Manageable</button>
+<button>High sometimes</button><button>Very high</button>
+</div>
+<button class="nav-btn" onclick="next(8)">Continue</button>
+</div>
 
-<div class="screen" id="screen8"><h2>How spontaneous are you together?</h2>
-<div class="options"><button>Very</button><button>Somewhat</button><button>Rarely</button><button>Not at all</button></div>
-<button class="nav-btn" onclick="next(9)">Continue</button></div>
+<div class="screen" id="screen8">
+<h2>How spontaneous are you together?</h2>
+<div class="subtitle">Reflect together</div>
+<div class="options">
+<button>Very</button><button>Somewhat</button>
+<button>Rarely</button><button>Not at all</button>
+</div>
+<button class="nav-btn" onclick="next(9)">Continue</button>
+</div>
 
-<div class="screen" id="screen9"><h2>How emotionally safe do you feel?</h2>
-<div class="options"><button>Very safe</button><button>Mostly</button><button>Sometimes unsure</button><button>Not enough</button></div>
-<button class="nav-btn" onclick="next(10)">Continue</button></div>
+<div class="screen" id="screen9">
+<h2>How emotionally safe do you feel?</h2>
+<div class="subtitle">Reflect together</div>
+<div class="options">
+<button>Very safe</button><button>Mostly</button>
+<button>Sometimes unsure</button><button>Not enough</button>
+</div>
+<button class="nav-btn" onclick="next(10)">Continue</button>
+</div>
 
-<div class="screen" id="screen10"><h2>Overall relationship satisfaction?</h2>
-<div class="options"><button>Excellent</button><button>Good</button><button>Needs care</button><button>Needs work</button></div>
-<button class="nav-btn" onclick="analyse()">See Insights</button></div>
+<div class="screen" id="screen10">
+<h2>Overall relationship satisfaction?</h2>
+<div class="subtitle">Reflect together</div>
+<div class="options">
+<button>Excellent</button><button>Good</button>
+<button>Needs care</button><button>Needs work</button>
+</div>
+<button class="nav-btn" onclick="analyse()">See Insights</button>
+</div>
 
 <!-- ANALYSIS -->
 <div class="screen" id="screen11">
 <div class="loading">
 Analysing connection patterns…<br>
-Generating personalised insight…
+Generating personalised relationship insight…
 </div>
 </div>
 
@@ -195,13 +273,13 @@ Generating personalised insight…
 <div class="result" id="result">
 <h2>Your Relationship Insight</h2>
 
-<p>Your responses suggest a strong emotional foundation with room to strengthen bonding and shared closeness.</p>
+<p>Your responses suggest a strong emotional foundation with opportunities to increase closeness and playful bonding.</p>
 
-<p><strong>Recommended focus:</strong><br>
-Increase physical intimacy and playful connection frequency.</p>
+<p><strong>Primary recommendation:</strong><br>
+Increase physical intimacy and affectionate connection frequency.</p>
 
 <p><strong>Suggested challenge:</strong><br>
-Daily intimacy for 30 days to rebuild momentum, connection and emotional warmth.</p>
+Daily intimacy for the next 30 days to rebuild momentum, connection and emotional warmth.</p>
 
 <p style="opacity:.7;">Insight confidence: 96%</p>
 
@@ -223,11 +301,13 @@ btn.classList.add("selected");
 function update(step){
 document.getElementById("fill").style.width=(step/12*100)+"%";
 }
+
 function next(n){
 document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
 document.getElementById("screen"+n).classList.add("active");
 update(n);
 }
+
 function analyse(){
 next(11);
 setTimeout(()=>{
@@ -235,6 +315,7 @@ next(12);
 setTimeout(()=>document.getElementById("result").classList.add("show"),50);
 },2200);
 }
+
 function resetApp(){
 document.getElementById("result").classList.remove("show");
 document.querySelectorAll(".options button").forEach(b=>b.classList.remove("selected"));
